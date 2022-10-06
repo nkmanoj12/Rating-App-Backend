@@ -71,9 +71,15 @@ router.post("/signup", async function(req, res) {
         //     const encrpytion = cryption.encryptData(req.body.password);
         //     console.log(encrpytion);
         // }
-    const user = await db.collection("users").find({"$or" : [{"contanct" : req.body.contanct}, {"email" : req.body.email}]}).count();
+    let user = await db.collection("users").find({"contanct" : req.body.contanct}).count();
     if(user != 0) {
-        res.send({statusCode : 400, statusMessage : "Failure", message : "User aleready there in DB"})
+        res.send({statusCode : 400, statusMessage : "Failure", message : "Mobile Number aleredy registered in DB"})
+        return false
+    }
+    
+    user = await db.collection("users").find({"email" : req.body.email}).count();
+    if(user != 0) {
+        res.send({statusCode : 400, statusMessage : "Failure", message : "E-Mail aleready registered in DB"})
         return false
     }
     let encrpytion = encryptData(req.body.password);
