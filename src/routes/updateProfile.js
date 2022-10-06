@@ -3,7 +3,7 @@ const schema = require("../schemas/signupSchema")
 
 const router = new express.Router();
 
-router.post('/updateProfile', async function(req, res) {
+router.post('/', async function(req, res) {
     if(req.body.username === null || req.body.username === undefined) {
         res.send({statusCode : 400, statusMessage : "Failure", message : "Username required"});
         return false;

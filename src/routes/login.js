@@ -3,7 +3,7 @@ const { decryptData } = require('../cryption');
 
 const router = new express.Router;
 
-router.get('/login', async function(req, res) {
+router.get('/', async function(req, res) {
     const dataCount = await db.collection("users").find({"$or" : [{"contanct" : req.body.username}, {"email" : req.body.username}, {"username" : req.body.username}]}).count();
     if(dataCount === 0) {
         res.send({statusCode : 400, statusMessage : "Failure", message : "User not found"})

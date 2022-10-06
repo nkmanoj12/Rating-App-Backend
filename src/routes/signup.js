@@ -4,7 +4,7 @@ const schema = require("../schemas/signupSchema");
 
 const router = new express.Router;
 
-router.post("/signup", async function(req, res) {
+router.post("/", async function(req, res) {
     // try {
         // const user = schema.find();
         // console.log(user);

@@ -12,11 +12,11 @@ const resetPassword = require("./resetPassword");
 const usernameCheck = require("./usernameCheck");
 const temp = require("./temp");
 
-app.use("/", signup);
-app.use("/", login);
-app.use("/", updateProfile);
-app.use("/", resetPassword);
-app.use("/", usernameCheck);
+app.use("/signup", signup);
+app.use("/login", login);
+app.use("/updateProfile", updateProfile);
+app.use("/resetPassword", resetPassword);
+app.use("/usernameCheck", usernameCheck);
 app.use("/", temp);
 
 module.exports = app;
