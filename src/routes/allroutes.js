@@ -4,10 +4,12 @@ const app = express();
 
 const signup = require("./signup");
 const login = require("./login");
+const updateProfile = require("./updateProfile");
 const temp = require("./temp");
 
 app.use("/", signup);
 app.use("/", login);
+app.use("/", updateProfile)
 app.use("/", temp);
 
 module.exports = app;
