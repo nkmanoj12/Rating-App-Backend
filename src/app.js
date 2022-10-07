@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require('cors');
 require("./mongConnection");
 const allroutes = require("./routes/allroutes");
 
 const app = express();
 const PORT = 3000;
 
+app.use(cors());
 app.use('/', allroutes);
 
 app.listen(PORT, function(err) {
