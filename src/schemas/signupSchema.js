@@ -7,6 +7,7 @@ const signupSchema = new schema ({
     lastname : {type : String},
     contanct : {type : Number},
     email : {type : String},
+    role : {type : String},
     username : {type : String},
     password : {type : String},
     iv : {type : String}
