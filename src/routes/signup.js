@@ -16,6 +16,13 @@ router.post("/", async function(req, res) {
         res.send({statusCode : 400, statusMessage : "Failure", message : "E-Mail aleready registered in DB"})
         return false
     }
+
+    user = await db.collection("users").find({"username" : req.body.username}).count();
+    if(user != 0) {
+        res.send({statusCode : 400, statusMessage : "Failure", message : "username not available"})
+        return false
+    }
+
     let encrpytion = encryptData(req.body.password);
     const password = encrpytion.encryptedData;
     const iv = encrpytion.iv;
