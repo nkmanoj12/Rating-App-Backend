@@ -7,19 +7,22 @@ const router = new express.Router;
 router.post("/", async function(req, res) {
     let user = await db.collection("users").find({"contanct" : req.body.contanct}).count();
     if(user != 0) {
-        res.send({statusCode : 400, statusMessage : "Failure", message : "Mobile Number aleredy registered in DB"})
+        res.status(400);
+        res.send({statusMessage : "Failure", message : "Mobile Number aleredy registered in DB"})
         return false
     }
     
     user = await db.collection("users").find({"email" : req.body.email}).count();
     if(user != 0) {
-        res.send({statusCode : 400, statusMessage : "Failure", message : "E-Mail aleready registered in DB"})
+        res.status(400);
+        res.send({statusMessage : "Failure", message : "E-Mail aleready registered in DB"})
         return false
     }
 
     user = await db.collection("users").find({"username" : req.body.username}).count();
     if(user != 0) {
-        res.send({statusCode : 400, statusMessage : "Failure", message : "username not available"})
+        res.status(400);
+        res.send({statusMessage : "Failure", message : "username not available"})
         return false
     }
 
@@ -37,7 +40,7 @@ router.post("/", async function(req, res) {
         iv : iv
     });
     await insertUser.save();
-    res.send({statusCode : 200, statusMessage : "Success", message : "User Stored in DB"});
+    res.send({statusMessage : "Success", message : "User Stored in DB"});
 })
 
 module.exports = router;

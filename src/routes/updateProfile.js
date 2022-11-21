@@ -5,7 +5,8 @@ const router = new express.Router();
 
 router.post('/', async function(req, res) {
     if(req.body.username === null || req.body.username === undefined) {
-        res.send({statusCode : 400, statusMessage : "Failure", message : "Username required"});
+        res.status(400);
+        res.send({statusMessage : "Failure", message : "Username required"});
         return false;
     }
     schema.findOneAndUpdate({username : req.body.username}, {
@@ -15,15 +16,17 @@ router.post('/', async function(req, res) {
         email : req.body.email
     }, null, function(err, docs) {
         if(err) {
-            res.send({statusCode : 400, statusMessage : "Failure", message : err});
+            res.status(400);
+            res.send({statusMessage : "Failure", message : err});
             return false;
         }
 
         if(docs === null) {
-            res.send({statusCode : 400, statusMessage : "Failure", message : "User not found"})
+            res.status(400);
+            res.send({statusMessage : "Failure", message : "User not found"})
             return false;
         }
-        res.send({statusCode : 200, statusMessage : "Success", message : "User details updated successfully"});
+        res.send({statusMessage : "Success", message : "User details updated successfully"});
     });
     
 });
